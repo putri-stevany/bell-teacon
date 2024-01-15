@@ -59,7 +59,7 @@ class TuesdayController extends Controller
             }
 
             // Simpan file audio yang baru
-            $validateData['audio'] = $request->file('audio')->store('public/audio_monday');
+            $validateData['audio'] = $request->file('audio')->store('public/audio_tuesday');
         }
 
         // Lakukan pembaruan dan dapatkan rekaman yang diperbarui
@@ -67,21 +67,21 @@ class TuesdayController extends Controller
 
         // Periksa apakah pembaruan berhasil
         if ($updated) {
-            return redirect('/monday')->with('success', 'Data telah diupdate');
+            return redirect('/tuesday')->with('success', 'Data telah diupdate');
         } else {
-            return redirect('/monday')->with('error', 'Gagal mengupdate data');
+            return redirect('/tuesday')->with('error', 'Gagal mengupdate data');
         }
     }
 
 
     public function destroy(Tuesday $tuesday){
         if (!empty($tuesday->audio)) {
-            Storage::delete('public/audio_monday/' . basename($tuesday->audio));
+            Storage::delete('public/audio_tuesday/' . basename($tuesday->audio));
         }
     
         // Hapus record dari database
         Tuesday::destroy($tuesday->id);
     
-        return redirect('/monday')->with('success', 'Data Berhasil Dihapus');
+        return redirect('/tuesday')->with('success', 'Data Berhasil Dihapus');
     }
 }

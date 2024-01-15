@@ -39,7 +39,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="">
+                <a class="nav-link text-white " href="{{route('wednesday.index')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">event_note</i>
                     </div>
@@ -48,7 +48,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="">
+                <a class="nav-link text-white " href="{{route('thursday.index')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">event</i>
                     </div>
@@ -57,7 +57,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link text-white " href="">
+                <a class="nav-link text-white " href="{{route('friday.index')}}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">today</i>
                     </div>
