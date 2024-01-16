@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('wednesdays', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->string('hari');
+            $table->string('hari'); // Kolom umum untuk menyimpan nama hari
             $table->time('jam');
             $table->string('jadwal');
-            $table->string('audio')->nullable();
+            $table->string('audio'); // Kolom polimorfik
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('wednesdays');
+        Schema::dropIfExists('schedules');
     }
 };

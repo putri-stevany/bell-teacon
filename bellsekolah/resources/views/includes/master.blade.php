@@ -6,6 +6,7 @@
 
         <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
         <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <title> Bell Beacon </title>
 
         <!--     Fonts and icons     -->
@@ -14,8 +15,6 @@
         <!-- Nucleo Icons -->
         <link href="{{asset('assets/css/nucleo-icons.css')}}" rel="stylesheet" />
         <link href="{{asset('assets/css/nucleo-svg.css')}}" rel="stylesheet" />
-
-        <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Marko+One&display=swap" rel="stylesheet">
@@ -43,14 +42,15 @@
 <script src="{{asset('assets/js/plugins/perfect-scrollbar.min.js')}}" ></script>
 <script src="{{asset('assets/js/plugins/smooth-scrollbar.min.js')}}" ></script>
 
-<!-- Bootstrap JS dan Popper.js (diperlukan untuk beberapa komponen Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 <!-- Include Toastr from CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
 <script type="text/javascript">
     // Notifikasi Tambah Data
