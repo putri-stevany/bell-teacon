@@ -144,3 +144,35 @@
         }
     }
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Menangani klik pada card-warning
+        document.querySelector('.card-warning').addEventListener('click', function () {
+            // Fungsi yang dijalankan saat card-warning diklik
+            window.location.href = '{{ route("normal") }}';
+            // Anda dapat menambahkan logika atau fungsi lainnya di sini
+        });
+
+        // Menangani klik pada card-success
+        document.querySelector('.card-success').addEventListener('click', function () {
+            // Fungsi yang dijalankan saat card-success diklik
+            window.location.href = '{{ route("ujian") }}';
+            // Anda dapat menambahkan logika atau fungsi lainnya di sini
+        });
+
+        // Menangani klik pada card-danger
+        document.querySelector('.card-danger').addEventListener('click', function () {
+            // Fungsi yang dijalankan saat card-danger diklik
+            alert('Card Ujian Sesi 2 Clicked');
+            // Anda dapat menambahkan logika atau fungsi lainnya di sini
+        });
+
+        // Menangani klik pada card-primary
+        document.querySelector('.card-primary').addEventListener('click', function () {
+            // Fungsi yang dijalankan saat card-primary diklik
+            alert('Card Balik Cepat Clicked');
+            // Anda dapat menambahkan logika atau fungsi lainnya di sini
+        });
+    });
+</script>
