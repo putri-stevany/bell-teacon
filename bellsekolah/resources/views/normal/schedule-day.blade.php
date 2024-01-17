@@ -1,5 +1,4 @@
-<!-- schedule-day.blade.php -->
-<div class="card my-4">
+<div class="card-header col mb-6">
     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
             <h6 class="text-white text-capitalize ps-3">{{ $day }} Activity Schedule</h6>
@@ -19,9 +18,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($daySchedule as $schedule)
+                    @foreach($daySchedule as $index => $schedule)
                         <tr>
-                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder align-middle">{{ $loop->index+1 }}</td>
+                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder align-middle">{{ $index + 1 }}</td>
                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder align-middle">{{ $schedule->hari }}</td>
                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder ps-2 align-middle">{{ date('H:i', strtotime($schedule->jam)) }}</td>
                             <td class="text-center text-uppercase text-secondary text-xxs font-weight-bolder align-middle">{{ $schedule->jadwal }}</td>
@@ -34,7 +33,7 @@
                                     </button>
 
                                     <!-- Tombol Delete -->
-                                    <form action="" method="post">
+                                    <form action="{{ route('schedule.destroy', ['schedule' => $schedule->id]) }}" method="post">
                                         <div class="d-flex justify-content-center">
                                             @method('DELETE')
                                             @csrf
@@ -46,6 +45,84 @@
                                 </div>
                             </td>
                         </tr>
+
+                        <!-- Start Modal Edit -->
+                        <div class="modal fade" id="editModal-{{ $schedule->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Schedule</h5>
+                                        <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                    
+                                    <!-- Input hidden untuk audioPath -->
+                                    <input type="hidden" id="audioPath-{{ $schedule->id }}" value="{{ asset('storage/' . $schedule->audio) }}">
+                    
+                                    <form action="{{ route('schedule.update', ['schedule' => $schedule->id]) }}" method="POST" enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            @method('PUT')
+                                            @csrf
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input type="hidden" value="{{$schedule->id}}" id="schedule_id">
+                    
+                                                    {{-- Hari --}}
+                                                    <div class="mb-3">
+                                                        <label for="hari-edit" class="form-label"><i class="fas fa-calendar"></i> Hari</label>
+                                                        <input type="text" class="form-control" id="hari-edit" name="hari" value="{{ $schedule->hari }}" readonly>
+                                                        @error('hari')
+                                                            <div class="alert alert-danger mt-2" role="alert">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                    
+                                                    {{-- Jam --}}
+                                                    <div class="form-group">
+                                                        <label for="jam-edit" class="control-label">
+                                                            <i class="fas fa-clock"></i> Jam
+                                                        </label>
+                                                        <input type="time" class="form-control @error('jam') is-invalid @enderror" value="{{ $schedule->jam }}" id="jam-edit" name="jam">
+                                                        @error('jam')
+                                                            <div class="alert alert-danger mt-2" role="alert">
+                                                                {{ $message }}
+                                                            </div>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                    
+                                                <div class="col-md-6">
+                                                    {{-- Jadwal --}}
+                                                    <div class="mb-3">
+                                                        <label for="jadwal-edit" class="form-label"><i class="fas fa-calendar-alt"></i> Jadwal</label>
+                                                        <input type="text" class="form-control @error('jadwal') is-invalid @enderror" id="jadwal-edit" name="jadwal" value="{{ $schedule->jadwal }}" placeholder="Jadwal">
+                                                        @error('jadwal')
+                                                            <div class="alert alert-danger mt-2" role="alert">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                    
+                                                    {{-- Audio --}}
+                                                    <div class="mb-3">
+                                                      <label for="audio-edit" class="form-label"><i class="fas fa-volume-up"></i> Choose Audio</label>
+                                                      <audio controls id="audioPreview-{{ $schedule->id }}" class="mb-3" style="display: none;">
+                                                          @if($schedule->audio)
+                                                          <source src="{{ asset('storage/audio_monday/' . $schedule->audio) }}" type="audio/*">
+                                                          @endif
+                                                      </audio>
+                                                      <input type="file" class="form-control @error('audio') is-invalid @enderror" id="audio-edit-{{ $schedule->id }}" name="audio" accept="audio/*" onchange="previewAudio('{{ $schedule->id }}')">
+                                                      @error('audio')
+                                                          <div class="alert alert-danger mt-2" role="alert">{{ $message }}</div>
+                                                      @enderror
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success edit_data">Edit</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 </tbody>
             </table>

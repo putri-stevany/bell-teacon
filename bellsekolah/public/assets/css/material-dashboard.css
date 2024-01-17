@@ -27938,4 +27938,57 @@ pre[class*="language-"] {
   font-size: 0.5rem; /* Sesuaikan dengan ukuran font yang diinginkan */
   font-family: 'Comic Sans MS';
 }
+
+.card-info {
+  background-color: #3498db; /* Warna latar card */
+  color: #fff; /* Warna teks pada card */
+  border-radius: 10px; /* Sudut lengkung card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan card */
+}
+
+.card-info .card-body {
+  padding: 20px; /* Ruang dalam card */
+}
+
+#digitalClock {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 36px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: glow 1s infinite alternate; /* Animasi kilau */
+}
+
+@keyframes glow {
+  from {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  to {
+      text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8), 0px 0px 20px rgba(255, 255, 255, 0.6);
+  }
+}
+
+
+.card-warning {
+  background-color: #f39c12; /* Warna untuk card Normal */
+}
+
+.card-success {
+  background-color: #2ecc71; /* Warna untuk card Ujian */
+}
+
+.card-danger {
+  background-color: #e74c3c; /* Warna untuk card Sesi2 */
+}
+
+.card-primary {
+  background-color: #3498db; /* Warna untuk card Balik */
+}
+
+.card-title {
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: #fff; /* Warna teks pada judul card */
+}
+
+
+
 /*# sourceMappingURL=dashboard-free.css.map */

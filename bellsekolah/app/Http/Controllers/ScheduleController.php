@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Schedule;
+use Illuminate\Support\Facades\Storage;
 class ScheduleController extends Controller
 {
     public function index()
@@ -54,5 +55,50 @@ class ScheduleController extends Controller
         $schedule->save();
 
         return redirect('/normal')->with('success', 'Data Berhasil Disimpan');
+    }
+
+    public function update(Request $request, Schedule $schedule)
+    {
+        $validateData = $request->validate([
+            'hari' => 'required',
+            'jam' => 'required',
+            'jadwal' => 'required'
+        ]);
+
+        // Ambil path file audio yang lama
+        $oldAudioPath = $schedule->audio;
+
+        // Proses file audio jika disediakan
+        if ($request->file('audio')) {
+            // Hapus file audio yang lama jika ada
+            if ($oldAudioPath) {
+                Storage::delete($oldAudioPath);
+            }
+
+            // Simpan file audio yang baru
+            $validateData['audio'] = $request->file('audio')->store('public/audio_normal');
+        }
+
+        // Lakukan pembaruan dan dapatkan rekaman yang diperbarui
+        $updated = $schedule->update($validateData);
+
+        // Periksa apakah pembaruan berhasil
+        if ($updated) {
+            return redirect('/normal')->with('success', 'Data telah diupdate');
+        } else {
+            return redirect('/normal')->with('error', 'Gagal mengupdate data');
+        }
+    }
+
+    public function destroy(Schedule $schedule)
+    {
+        if (!empty($schedule->audio)) {
+            Storage::delete('public/audio_normal/' . basename($schedule->audio));
+        }
+    
+        // Hapus record dari database
+        Schedule::destroy($schedule->id);
+    
+        return redirect('/normal')->with('success', 'Data Berhasil Dihapus');
     }
 }

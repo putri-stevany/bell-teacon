@@ -16,6 +16,7 @@
         <link href="{{asset('assets/css/nucleo-icons.css')}}" rel="stylesheet" />
         <link href="{{asset('assets/css/nucleo-svg.css')}}" rel="stylesheet" />
 
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Marko+One&display=swap" rel="stylesheet">
         
@@ -100,6 +101,33 @@
     });
   });
 </script>
+
+<script>
+    function updateClock() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var day = now.toLocaleDateString('en-US', { weekday: 'long' }); // Mendapatkan hari dalam format teks
+        var date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); // Mendapatkan tanggal dalam format teks
+
+        // Tambahkan nol di depan angka jika kurang dari 10
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        var timeString = day + ', ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
+        document.getElementById("digitalClock").innerHTML = timeString;
+    }
+
+    // Panggil updateClock setiap detik
+    setInterval(updateClock, 1000);
+
+    // Inisialisasi jam digital saat halaman dimuat
+    updateClock();
+</script>
+
+
 
 {{-- <script>
     function previewAudio() {

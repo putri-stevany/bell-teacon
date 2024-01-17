@@ -54,11 +54,11 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="card card-stats card-warning" data-target="normal">
-                                <div class="card-body ">
+                                <div class="card-body">
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="icon-big text-center">
-                                                <i class="la la-users"></i>
+                                                <i class="fas fa-users fa-2x text-white"></i>
                                             </div>
                                         </div>
                                         <div class="col-7 d-flex align-items-center">
@@ -72,11 +72,11 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card card-stats card-success" data-target="ujian">
-                                <div class="card-body ">
+                                <div class="card-body">
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="icon-big text-center">
-                                                <i class="la la-bar-chart"></i>
+                                                <i class="fas fa-bar-chart fa-2x text-white"></i>
                                             </div>
                                         </div>
                                         <div class="col-7 d-flex align-items-center">
@@ -94,12 +94,12 @@
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="icon-big text-center">
-                                                <i class="la la-newspaper-o"></i>
+                                                <i class="fas fa-newspaper fa-2x text-white"></i>
                                             </div>
                                         </div>
                                         <div class="col-7 d-flex align-items-center">
                                             <div class="numbers">
-                                                <h4 class="card-title">Ujian</h4>
+                                                <h4 class="card-title">Sesi 2</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -108,16 +108,16 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card card-stats card-primary" data-target="balik">
-                                <div class="card-body ">
+                                <div class="card-body">
                                     <div class="row">
                                         <div class="col-5">
                                             <div class="icon-big text-center">
-                                                <i class="la la-check-circle"></i>
+                                                <i class="fas fa-check-circle fa-2x text-white"></i>
                                             </div>
                                         </div>
                                         <div class="col-7 d-flex align-items-center">
                                             <div class="numbers">
-                                                <h4 class="card-title">Ujian</h4>
+                                                <h4 class="card-title">Balik</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>     
     </div>
 </main>
 @endsection
