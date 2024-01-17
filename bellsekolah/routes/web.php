@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BalikController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\Sesi2Controller;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\UjianController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +27,14 @@ Route::post('/normal', [ScheduleController::class, 'store'])->name("normal");
 Route::put('/schedule/{schedule}', [ScheduleController::class, 'update'])->name('schedule.update');
 Route::delete('/schedule/{schedule}', [ScheduleController::class, 'destroy'])->name("schedule.destroy");
 
+
 Route::get('/ujian', [UjianController::class, 'index'])->name("ujian");
+
+Route::get('/sesi2', [Sesi2Controller::class, 'index'])->name("sesi2");
+
+Route::get('/balik', [BalikController::class, 'index'])->name("balik");
+
+
 
 
 

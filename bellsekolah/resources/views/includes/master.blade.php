@@ -192,14 +192,14 @@
         // Menangani klik pada card-danger
         document.querySelector('.card-danger').addEventListener('click', function () {
             // Fungsi yang dijalankan saat card-danger diklik
-            alert('Card Ujian Sesi 2 Clicked');
+            window.location.href = '{{ route("sesi2") }}';
             // Anda dapat menambahkan logika atau fungsi lainnya di sini
         });
 
         // Menangani klik pada card-primary
         document.querySelector('.card-primary').addEventListener('click', function () {
             // Fungsi yang dijalankan saat card-primary diklik
-            alert('Card Balik Cepat Clicked');
+            window.location.href = '{{ route("balik") }}';
             // Anda dapat menambahkan logika atau fungsi lainnya di sini
         });
     });
