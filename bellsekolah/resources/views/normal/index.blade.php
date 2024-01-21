@@ -135,6 +135,7 @@
                     <div class="card card-info">
                         <div class="card-body">
                             <div id="digitalClock" class="text-center"></div>
+                            <audio id="audioPlayer" controls style="display: none;"></audio>
                         </div>
                     </div>
                 </div>
@@ -158,6 +159,7 @@
                                 <option value="Wednesday">Wednesday</option>
                                 <option value="Thursday">Thursday</option>
                                 <option value="Friday">Friday</option>
+                                <option value="Sunday">Sunday</option>
                                 <!-- ... -->
                             </select>
                         </div>

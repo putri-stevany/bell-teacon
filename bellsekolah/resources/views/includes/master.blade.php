@@ -118,6 +118,15 @@
 
         var timeString = day + ', ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
         document.getElementById("digitalClock").innerHTML = timeString;
+
+        fetch('/get-audio-schedule')
+        .then(response => response.json())
+        .then(data => {
+            if (data.audio_path) {
+                document.getElementById('audioPlayer').src = data.audio_path;
+                document.getElementById('audioPlayer').play();
+            }
+        });
     }
 
     // Panggil updateClock setiap detik

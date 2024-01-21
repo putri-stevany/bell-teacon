@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AudioController;
 use App\Http\Controllers\BalikController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ScheduleController;
@@ -33,6 +34,8 @@ Route::get('/ujian', [UjianController::class, 'index'])->name("ujian");
 Route::get('/sesi2', [Sesi2Controller::class, 'index'])->name("sesi2");
 
 Route::get('/balik', [BalikController::class, 'index'])->name("balik");
+
+Route::get('/get-audio-schedule', [AudioController::class, 'getAudioSchedule']);
 
 
 
