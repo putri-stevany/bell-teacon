@@ -70,22 +70,8 @@
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {{-- @foreach($schedules as $schedule)
-                    <tr>
-                      <td>{{ $loop->index+1 }}</td>
-                      <td>{{ $schedule->hari }}</td>
-                      <td class="align-middle text-center text-sm">
-                        {{ $schedule->jam }}
-                      </td>
-                      <td class="align-middle text-center">
-                        {{ $schedule->jadwal }}
-                      </td>
-                      <td class="align-middle">
-                        {{ $schedule->Audio }}
-                      </td>
-                    </tr>
-                    @endforeach --}}
+                  <tbody id="jadwalContainer">
+                    <!-- Data tabel akan ditampilkan di sini -->
                   </tbody>
                 </table>
               </div>
@@ -93,12 +79,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Jadwal Container -->
-      <div id="jadwalContainer">
-        <!-- Tempat jadwal akan ditampilkan -->
-      </div>
-      <!-- End Jadwal Container -->
 
       <footer class="footer py-4  ">
         <div class="container-fluid">

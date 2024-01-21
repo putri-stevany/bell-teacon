@@ -181,6 +181,66 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+    var activeScheduleType = '';  // Variabel untuk menyimpan jenis jadwal yang aktif
+
+    function loadScheduleData(route) {
+        fetch(route)
+            .then(response => response.json())
+            .then(data => {
+                // Menghapus konten yang ada di dalam tbody
+                document.getElementById('jadwalContainer').innerHTML = '';
+
+                // Mengisi tbody dengan data baru
+                data.forEach(schedule => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${schedule.id}</td>
+                        <td>${schedule.hari}</td>
+                        <td class="align-middle text-center text-sm">${schedule.jam}</td>
+                        <td class="align-middle text-center">${schedule.jadwal}</td>
+                        <td class="align-middle">${schedule.audio}</td>
+                        <td class="text-secondary opacity-7"></td>
+                    `;
+                    document.getElementById('jadwalContainer').appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching schedule data:', error));
+    }
+
+    function handleClick(card) {
+        activeScheduleType = card.getAttribute('data-target');  // Menyimpan jenis jadwal yang aktif
+        const route = `/${activeScheduleType}`;  // Menggunakan jenis jadwal yang aktif saat memanggil route
+        loadScheduleData(route);
+
+        // Mengarahkan pengguna ke halaman baru
+        window.location.href = route;
+    }
+
+    // Menangani klik pada card-warning
+    document.querySelector('.card-warning').addEventListener('click', function () {
+        handleClick(this);
+    });
+
+    // Menangani klik pada card-success
+    document.querySelector('.card-success').addEventListener('click', function () {
+        handleClick(this);
+    });
+
+    // Menangani klik pada card-danger
+    document.querySelector('.card-danger').addEventListener('click', function () {
+        handleClick(this);
+    });
+
+    // Menangani klik pada card-primary
+    document.querySelector('.card-primary').addEventListener('click', function () {
+        handleClick(this);
+    });
+});
+</script>
+
+
+{{-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
         // Menangani klik pada card-warning
         document.querySelector('.card-warning').addEventListener('click', function () {
             // Fungsi yang dijalankan saat card-warning diklik
@@ -209,4 +269,4 @@
             // Anda dapat menambahkan logika atau fungsi lainnya di sini
         });
     });
-</script>
+</script> --}}

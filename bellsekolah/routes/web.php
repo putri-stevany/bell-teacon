@@ -30,7 +30,6 @@ Route::post('/normal', [ScheduleController::class, 'store'])->name("normal");
 Route::put('/schedule/{schedule}', [ScheduleController::class, 'update'])->name('schedule.update');
 Route::delete('/schedule/{schedule}', [ScheduleController::class, 'destroy'])->name("schedule.destroy");
 
-
 Route::get('/ujian', [UjianController::class, 'index'])->name("ujian");
 Route::post('/ujian', [UjianController::class, 'store'])->name("ujian");
 Route::put('/ujian/{ujian}', [UjianController::class, 'update'])->name('ujian.update');
