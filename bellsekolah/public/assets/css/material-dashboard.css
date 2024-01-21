@@ -27955,7 +27955,8 @@ pre[class*="language-"] {
   font-size: 36px;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  animation: glow 1s infinite alternate; /* Animasi kilau */
+  color: #ffffff; /* Ganti dengan warna yang diinginkan, misalnya warna kuning terang */
+  /* animation: glow 1s infinite alternate; Animasi kilau */
 }
 
 @keyframes glow {

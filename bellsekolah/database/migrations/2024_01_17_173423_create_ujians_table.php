@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('ujians', function (Blueprint $table) {
             $table->id();
+            $table->string('hari'); // Kolom umum untuk menyimpan nama hari
+            $table->time('jam');
+            $table->string('jadwal');
+            $table->string('audio'); // Kolom polimorfik
             $table->timestamps();
         });
     }

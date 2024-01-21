@@ -108,10 +108,9 @@
         var hours = now.getHours();
         var minutes = now.getMinutes();
         var seconds = now.getSeconds();
-        var day = now.toLocaleDateString('en-US', { weekday: 'long' }); // Mendapatkan hari dalam format teks
-        var date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); // Mendapatkan tanggal dalam format teks
+        var day = now.toLocaleDateString('en-US', { weekday: 'long' });
+        var date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-        // Tambahkan nol di depan angka jika kurang dari 10
         hours = hours < 10 ? "0" + hours : hours;
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -120,19 +119,17 @@
         document.getElementById("digitalClock").innerHTML = timeString;
 
         fetch('/get-audio-schedule')
-        .then(response => response.json())
-        .then(data => {
-            if (data.audio_path) {
-                document.getElementById('audioPlayer').src = data.audio_path;
-                document.getElementById('audioPlayer').play();
-            }
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.audio_normal) {
+                    document.getElementById('audioPlayer').src = data.audio_normal;
+                    document.getElementById('audioPlayer').play();
+                }
+            })
+            .catch(error => console.error('Error fetching audio schedule:', error));
     }
 
-    // Panggil updateClock setiap detik
     setInterval(updateClock, 1000);
-
-    // Inisialisasi jam digital saat halaman dimuat
     updateClock();
 </script>
 

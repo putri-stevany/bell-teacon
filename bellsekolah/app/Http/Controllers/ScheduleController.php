@@ -24,7 +24,7 @@ class ScheduleController extends Controller
             'Wednesday' => $wednesday,
             'Thursday' => $thursday,
             'Friday' => $friday,
-            'Sunday' => $sunday
+            'Sunday' => $sunday,
         ];
 
         // Tampilkan view dengan data jadwal

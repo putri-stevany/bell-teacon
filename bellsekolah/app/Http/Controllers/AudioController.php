@@ -11,14 +11,16 @@ class AudioController extends Controller
     {
         $currentDay = now()->format('l');
         $currentTime = now()->format('H:i:s');
-
+    
         $schedule = Schedule::where('hari', $currentDay)
             ->where('jam', '<=', $currentTime)
+            ->orderBy('jam', 'desc') // Jika ada beberapa jadwal, ambil yang terbaru
             ->first();
-
+    
         if ($schedule) {
+            $audioPath = 'storage/audio_normal/' . $schedule->audio;
             return response()->json([
-                'audio_path' => $schedule->audio,
+                'audio_normal' => asset($audioPath),
                 'message' => 'Audio found for the current schedule.',
             ]);
         } else {
@@ -26,5 +28,5 @@ class AudioController extends Controller
                 'message' => 'No audio found for the current schedule.',
             ]);
         }
-    }
+    }    
 }

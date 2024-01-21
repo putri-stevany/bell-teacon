@@ -132,7 +132,7 @@
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-info">
+                    <div class="card card-warning">
                         <div class="card-body">
                             <div id="digitalClock" class="text-center"></div>
                             <audio id="audioPlayer" controls style="display: none;"></audio>

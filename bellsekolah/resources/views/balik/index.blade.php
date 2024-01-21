@@ -146,7 +146,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- Form input -->
-                    <form action="{{route('normal')}}" method="POST" enctype="multipart/form-data" class="form-inline d-flex justify-content-between">
+                    <form action="{{route('balik')}}" method="POST" enctype="multipart/form-data" class="form-inline d-flex justify-content-between">
                         {{ csrf_field() }}
         
                         <div class="form-group mb-2">
@@ -190,6 +190,18 @@
         
                         <button type="submit" class="btn btn-primary mb-2 add_data">Add</button>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-md-12">
+                    @foreach ($scheduleData as $day => $daySchedule)
+                        <div class="mb-4">
+                            @include('balik.schedule-balik', ['day' => $day, 'daySchedule' => $daySchedule])
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
