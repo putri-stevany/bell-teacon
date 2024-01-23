@@ -102,7 +102,87 @@
   });
 </script>
 
-<script>
+{{-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var day = now.toLocaleDateString('en-US', { weekday: 'long' });
+            var date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            var timeString = day + ', ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
+            document.getElementById("digitalClock").innerHTML = timeString;
+
+            // Mendapatkan hari dalam bentuk angka (0 = Minggu, 1 = Senin, dst.)
+            const dayOfWeek = now.getDay();
+
+            // Mendapatkan data jadwal berdasarkan hari
+            const scheduleData = getScheduleData(dayOfWeek);
+
+            if (scheduleData) {
+                const audioPath = scheduleData.audio;
+                playAudio(audioPath);
+            } else {
+                // Tambahkan logika jika tidak ada jadwal pada hari tersebut
+                // Sebagai contoh, menyembunyikan audio player jika tidak ada jadwal
+                hideAudioPlayer();
+            }
+        }
+
+        function getScheduleData(dayOfWeek, currentHour) {
+        // Gantilah dengan logika atau pemanggilan API untuk mendapatkan data jadwal dari tabel database
+        // Misalnya, jika Anda memiliki array schedules sebagai data placeholder:
+        const schedules = [
+            // Index 0: Minggu, Index 1: Senin, dst.
+            { day: 0, schedule: [] }, // Minggu
+            { day: 1, schedule: [
+                { hour: 8, audio: 'path/audio-senin-pagi.mp3' },
+                { hour: 12, audio: 'path/audio-senin-siang.mp3' },
+                { hour: 17, audio: 'path/audio-senin-sore.mp3' },
+            ] }, // Senin
+            // ... dan seterusnya
+        ];
+
+        // Temukan jadwal untuk hari dan jam saat ini
+        const daySchedule = schedules.find(schedule => schedule.day === dayOfWeek);
+
+        if (daySchedule) {
+            // Temukan jadwal berdasarkan jam saat ini
+            const currentSchedule = daySchedule.schedule.find(entry => currentHour >= entry.hour && currentHour < entry.hour + 1);
+
+            if (currentSchedule) {
+                return currentSchedule;
+            }
+        }
+
+        return null; // Jadwal tidak ditemukan
+    }
+
+        function playAudio(audioPath) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.src = audioPath;
+            audioPlayer.play();
+            audioPlayer.style.display = 'block';  // Menampilkan audio player
+        }
+
+        function hideAudioPlayer() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.style.display = 'none';  // Menyembunyikan audio player
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    });
+</script> --}}
+
+
+{{-- <script>
     function updateClock() {
         var now = new Date();
         var hours = now.getHours();
@@ -131,7 +211,7 @@
 
     setInterval(updateClock, 1000);
     updateClock();
-</script>
+</script> --}}
 
 
 
@@ -236,6 +316,63 @@
         handleClick(this);
     });
 });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+            var dayOfWeek = now.getDay();
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            var timeString = dayOfWeekToString(dayOfWeek) + ', ' + hours + ':' + minutes + ':' + seconds;
+            document.getElementById("digitalClock").innerHTML = timeString;
+
+            // Menggunakan AJAX untuk mendapatkan data audio dari server
+            fetch('/get-audio-schedule')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.audio) {
+                        const audioPath = data.audio;
+                        playAudio(audioPath);
+                    } else {
+                        hideAudioPlayer();
+                    }
+                })
+                .catch(error => console.error('Error fetching audio schedule:', error));
+        }
+
+        function dayOfWeekToString(dayOfWeek) {
+            const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            return daysOfWeek[dayOfWeek];
+        }
+
+        function playAudio(audioPath) {
+            const audioPlayer = new Audio(audioPath);
+
+            audioPlayer.addEventListener('ended', function () {
+                hideAudioPlayer();
+                updateClock(); // Memperbarui jam setelah audio selesai
+            });
+
+            audioPlayer.play();
+            audioPlayer.style.display = 'block';
+        }
+
+        function hideAudioPlayer() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            audioPlayer.style.display = 'none';
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    });
 </script>
 
 
