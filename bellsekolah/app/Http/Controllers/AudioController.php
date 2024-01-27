@@ -2,35 +2,69 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Balik;
 use App\Models\Schedule;
+use App\Models\Sesi2;
+use App\Models\Ujian;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AudioController extends Controller
 {
     public function getAudioSchedule(Request $request)
     {
-        // Mendapatkan waktu sekarang
-        $now = now();
-        $dayOfWeek = $now->dayOfWeek;
+        $modelName = $request->input('model', 'DefaultModel'); // DefaultModel adalah model default
 
-        // Mengambil data audio berdasarkan hari dan waktu sekarang
-        $audioData = Schedule::where('hari', $dayOfWeek)
-        ->whereTime('jam', '<=', $now->toTimeString())
-        ->first();
+        // Gunakan $modelName untuk menentukan tabel atau model yang sesuai
+        $data = app("App\\Models\\$modelName")->all(['hari', 'jam', 'audio']);
 
-        if ($audioData && $audioData->audio) {
-            // Menghitung waktu berakhir berdasarkan waktu mulai dan durasi audio
-            $endTime = Carbon::parse($audioData->jam)->addSeconds($this->getAudioDurationInSeconds($audioData->audio));
-
-            // Periksa apakah sekarang berada di antara waktu mulai dan waktu berakhir
-            if ($now->between($audioData->jam, $endTime)) {
-                $audioUrl = asset("storage/audio_normal/{$audioData->audio}");
-                return response()->json(['audio' => $audioUrl]);
-            }
+        // Mengubah path audio menjadi URL lengkap
+        foreach ($data as $item) {
+            $item->audio = Storage::url($item->audio);
         }
 
-        return response()->json(['audio' => null, 'error' => 'Tidak ada data audio ditemukan'], 404);
-
+        return response()->json($data);
     }
+
+
+    // public function getAudioUjian(Request $request)
+    // {
+    //     $ujian = Ujian::all(['hari', 'jam', 'audio']); // Ambil hanya kolom yang diperlukan
+
+    //     // Mengubah path audio menjadi URL lengkap
+    //     foreach ($ujian as $item) {
+    //         $item->audio = Storage::url($item->audio);
+    //     }
+    
+    //     return response()->json($ujian);
+        
+    // }
+
+    // public function getAudioSesi2(Request $request)
+    // {
+    //     $sesi2 = Sesi2::all(['hari', 'jam', 'audio']); // Ambil hanya kolom yang diperlukan
+
+    //     // Mengubah path audio menjadi URL lengkap
+    //     foreach ($sesi2 as $item) {
+    //         $item->audio = Storage::url($item->audio);
+    //     }
+    
+    //     return response()->json($sesi2);
+        
+    // }
+
+    // public function getAudioBalik(Request $request)
+    // {
+    //     $balik = Balik::all(['hari', 'jam', 'audio']); // Ambil hanya kolom yang diperlukan
+
+    //     // Mengubah path audio menjadi URL lengkap
+    //     foreach ($balik as $item) {
+    //         $item->audio = Storage::url($item->audio);
+    //     }
+    
+    //     return response()->json($balik);
+        
+    // }
+
 }

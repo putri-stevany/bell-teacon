@@ -135,12 +135,14 @@
                     <div class="card card-warning">
                         <div class="card-body">
                             <div id="digitalClock" class="text-center"></div>
-                            <audio id="audioPlayer" controls style="display: none;"></audio>
+                            <!-- Tambahkan elemen audio tersembunyi -->
+                            <audio id="hiddenAudio" autoplay style="display: none;"></audio>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         
         <!-- Main Blade File -->
         <div class="container-fluid py-4">

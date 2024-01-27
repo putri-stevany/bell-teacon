@@ -52,6 +52,9 @@ Route::get('/get-all-schedules', function (Request $request) {
 });
 
 Route::get('/get-audio-schedule', [AudioController::class, 'getAudioSchedule']);
+// Route::get('/get-audio-ujian', [AudioController::class, 'getAudioUjian']);
+// Route::get('/get-audio-sesi2', [AudioController::class, 'getAudioSesi2']);
+// Route::get('/get-audio-balik', [AudioController::class, 'getAudioBalik']);
 
 
 

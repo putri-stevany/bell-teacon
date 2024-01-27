@@ -182,7 +182,7 @@
 </script> --}}
 
 
-{{-- <script>
+<script>
     function updateClock() {
         var now = new Date();
         var hours = now.getHours();
@@ -197,21 +197,45 @@
 
         var timeString = day + ', ' + date + ' ' + hours + ':' + minutes + ':' + seconds;
         document.getElementById("digitalClock").innerHTML = timeString;
+    }
 
-        fetch('/get-audio-schedule')
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+<script>
+    function updateAudio(jadwal, model) {
+        // Ambil data dari server berdasarkan jadwal dan model yang diteruskan
+        fetch(`/get-audio-schedule?jadwal=${jadwal}&model=${model}`)
             .then(response => response.json())
             .then(data => {
-                if (data.audio_normal) {
-                    document.getElementById('audioPlayer').src = data.audio_normal;
-                    document.getElementById('audioPlayer').play();
+                // Dapatkan waktu saat ini
+                const currentTime = new Date();
+                const currentDay = currentTime.toLocaleDateString('en-US', { weekday: 'long' });
+                const currentHour = currentTime.getHours();
+                const currentMinute = currentTime.getMinutes();
+
+                // Cari audio yang sesuai dengan waktu, hari, dan menit saat ini
+                const matchingAudio = data.find(entry =>
+                    entry.hari === currentDay && entry.jam == currentHour && entry.menit == currentMinute
+                );
+
+                // Jika audio ditemukan, atur src elemen audio dan mainkan
+                if (matchingAudio && matchingAudio.audio) {
+                    const hiddenAudio = document.getElementById('hiddenAudio');
+                    hiddenAudio.src = matchingAudio.audio;
+                    hiddenAudio.play();
+                } else {
+                    console.error('Audio not found for the current time and day.');
                 }
             })
             .catch(error => console.error('Error fetching audio schedule:', error));
     }
 
-    setInterval(updateClock, 1000);
-    updateClock();
-</script> --}}
+    // Atur interval untuk memperbarui audio setiap detik
+    setInterval(() => updateAudio('default'), 1000);
+</script>
+
 
 
 
@@ -299,26 +323,31 @@
     // Menangani klik pada card-warning
     document.querySelector('.card-warning').addEventListener('click', function () {
         handleClick(this);
+        updateAudio('default', 'Schedule'); // Pastikan 'Schedule' sesuai dengan model yang benar
     });
 
     // Menangani klik pada card-success
     document.querySelector('.card-success').addEventListener('click', function () {
         handleClick(this);
+        updateAudio('default', 'Ujian'); // Pastikan 'Ujian' sesuai dengan model yang benar
     });
 
     // Menangani klik pada card-danger
     document.querySelector('.card-danger').addEventListener('click', function () {
         handleClick(this);
+        updateAudio('default', 'Sesi2'); // Pastikan 'Sesi2' sesuai dengan model yang benar
     });
 
     // Menangani klik pada card-primary
     document.querySelector('.card-primary').addEventListener('click', function () {
         handleClick(this);
+        updateAudio('default', 'Balik'); // Pastikan 'Balik' sesuai dengan model yang benar
     });
+
 });
 </script>
 
-<script>
+{{-- <script>
     document.addEventListener("DOMContentLoaded", function () {
         function updateClock() {
             var now = new Date();
@@ -373,7 +402,7 @@
         setInterval(updateClock, 1000);
         updateClock();
     });
-</script>
+</script> --}}
 
 
 {{-- <script>
