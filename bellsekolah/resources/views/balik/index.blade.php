@@ -117,7 +117,7 @@
                                         </div>
                                         <div class="col-7 d-flex align-items-center">
                                             <div class="numbers">
-                                                <h4 class="card-title">Balik</h4>
+                                                <h4 class="card-title">Lainnya</h4>
                                             </div>
                                         </div>
                                     </div>

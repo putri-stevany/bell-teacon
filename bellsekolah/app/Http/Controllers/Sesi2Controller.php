@@ -16,7 +16,6 @@ class Sesi2Controller extends Controller
         $wednesday = Sesi2::where('hari', 'Wednesday')->get();
         $thursday = Sesi2::where('hari', 'Thursday')->get();
         $friday = Sesi2::where('hari', 'Friday')->get();
-        $sunday = Sesi2::where('hari', 'Sunday')->get();
 
         // Sertakan data dalam array untuk dikirim ke view
         $scheduleData = [
@@ -24,8 +23,7 @@ class Sesi2Controller extends Controller
             'Tuesday' => $tuesday,
             'Wednesday' => $wednesday,
             'Thursday' => $thursday,
-            'Friday' => $friday,
-            'Sunday' => $sunday,
+            'Friday' => $friday
         ];
 
         // Tampilkan view dengan data jadwal

@@ -16,7 +16,6 @@ class BalikController extends Controller
         $wednesday = Balik::where('hari', 'Wednesday')->get();
         $thursday = Balik::where('hari', 'Thursday')->get();
         $friday = Balik::where('hari', 'Friday')->get();
-        $sunday = Balik::where('hari', 'Sunday')->get();
 
         // Sertakan data dalam array untuk dikirim ke view
         $scheduleData = [
@@ -24,8 +23,7 @@ class BalikController extends Controller
             'Tuesday' => $tuesday,
             'Wednesday' => $wednesday,
             'Thursday' => $thursday,
-            'Friday' => $friday,
-            'Sunday' => $sunday,
+            'Friday' => $friday
         ];
 
         // Tampilkan view dengan data jadwal

@@ -15,7 +15,6 @@ class ScheduleController extends Controller
         $wednesday = Schedule::where('hari', 'Wednesday')->get();
         $thursday = Schedule::where('hari', 'Thursday')->get();
         $friday = Schedule::where('hari', 'Friday')->get();
-        $sunday = Schedule::where('hari', 'Sunday')->get();
 
         // Sertakan data dalam array untuk dikirim ke view
         $scheduleData = [
@@ -23,8 +22,7 @@ class ScheduleController extends Controller
             'Tuesday' => $tuesday,
             'Wednesday' => $wednesday,
             'Thursday' => $thursday,
-            'Friday' => $friday,
-            'Sunday' => $sunday,
+            'Friday' => $friday
         ];
 
         // Tampilkan view dengan data jadwal

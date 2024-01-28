@@ -16,7 +16,6 @@ class UjianController extends Controller
         $wednesday = Ujian::where('hari', 'Wednesday')->get();
         $thursday = Ujian::where('hari', 'Thursday')->get();
         $friday = Ujian::where('hari', 'Friday')->get();
-        $sunday = Ujian::where('hari', 'Sunday')->get();
 
         // Sertakan data dalam array untuk dikirim ke view
         $scheduleData = [
@@ -24,8 +23,7 @@ class UjianController extends Controller
             'Tuesday' => $tuesday,
             'Wednesday' => $wednesday,
             'Thursday' => $thursday,
-            'Friday' => $friday,
-            'Sunday' => $sunday,
+            'Friday' => $friday
         ];
 
         // Tampilkan view dengan data jadwal
