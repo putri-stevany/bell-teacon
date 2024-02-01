@@ -190,7 +190,6 @@
                                 <div class="alert alert-danger mt-2" role="alert">{{ $message }}</div>
                             @enderror
                         </div>
-        
                         <button type="submit" class="btn btn-primary mb-2 add_data">Add</button>
                     </form>
                 </div>

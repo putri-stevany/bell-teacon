@@ -203,7 +203,7 @@
     updateClock();
 </script>
 
-<script>
+{{-- <script>
     function updateAudio(jadwal, model) {
         // Ambil data dari server berdasarkan jadwal dan model yang diteruskan
         fetch(`/get-audio-schedule?jadwal=${jadwal}&model=${model}`)
@@ -234,6 +234,37 @@
 
     // Atur interval untuk memperbarui audio setiap detik
     setInterval(() => updateAudio('default'), 1000);
+</script> --}}
+
+<!-- Script untuk jam digital dan audio -->
+<script>
+    // Fungsi untuk mendapatkan waktu saat ini
+    function getCurrentTime() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+    }
+
+    // Fungsi untuk memainkan audio
+    function playAudio() {
+        const audio = document.getElementById('hiddenAudio');
+        audio.play();
+    }
+
+    // Fungsi untuk memeriksa dan memainkan audio pada waktu yang telah diatur
+    function checkScheduledTime() {
+        const currentTime = getCurrentTime();
+        const scheduledTimes = {!! json_encode($scheduledTimes) !!}; // Gantilah ini dengan data jadwal dari database
+
+        // Cek apakah waktu saat ini cocok dengan waktu yang telah diatur
+        if (scheduledTimes.includes(currentTime)) {
+            playAudio();
+        }
+    }
+
+    // Jalankan fungsi checkScheduledTime setiap detik
+    setInterval(checkScheduledTime, 1000);
 </script>
 
 
