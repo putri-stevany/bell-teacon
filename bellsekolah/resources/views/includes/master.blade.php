@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
-        <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
+        <link rel="icon" type="image/png" href="{{asset('assets/img/Techno_Bell.png')}}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <title> Bell Beacon </title>
 
