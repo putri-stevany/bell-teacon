@@ -48,33 +48,6 @@
     <!-- End Navbar -->
 
     <div class="container-fluid py-4">
-        <div class="row">
-            <div class="col-12">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card card-stats card-warning" data-target="normal">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <div class="icon-big text-center">
-                                                <i class="fas fa-users fa-2x text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-7 d-flex align-items-center">
-                                            <div class="numbers">
-                                                <h4 class="card-title">Normal</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>        
-
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-md-12">
